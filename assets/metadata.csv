@@ -1,0 +1,11 @@
+primary_genre,idx,name,release_year,release_decade,img_path
+Action,0,Mission: Impossible - Dead Reckoning Part One,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/0.jpg
+Adventure,9,Gran Turismo,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/9.jpg
+Animation,12,PAW Patrol: The Mighty Movie,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/12.jpg
+Comedy,18,Barbie,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/18.jpg
+Crime,15,The Kill Room,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/15.jpg
+Documentary,29,Race to the Summit,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/29.jpg
+Drama,38,Oppenheimer,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/38.jpg
+Family,88,Spy Kids: Armageddon,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/88.jpg
+Fantasy,26,Haunted Mansion,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/26.jpg
+History,687,Prizefighter: The Life of Jem Belcher,2022,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/687.jpg
