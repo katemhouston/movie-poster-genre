@@ -13,7 +13,10 @@ dependencies = [
     "pillow",
     "pandas",
     "scikit-learn",
+    "pyyaml",
+    "matplotlib",
+    "jupyter",
 ]
 
 [tool.setuptools.packages.find]
-include = ["data*", "models*"]
+include = ["data*", "data_loader*", "models*"]
