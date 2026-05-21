@@ -1,5 +1,5 @@
 data:
-  save_dir : /gpfs/home/khousto4/movie-poster-genre-data/images
-  metadata_path: /gpfs/home/khousto4/movie-poster-genre-data/metadata.csv
+  save_dir : /path/to/images
+  metadata_path: /path/to/metadata.csv
   img_size: 224
   quality: 95
