@@ -219,3 +219,4 @@ __marimo__/
 *.egg-info/
 .env
 slurm_logs/
+exploratory_analysis.ipynb
