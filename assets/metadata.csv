@@ -1,11 +1,20 @@
 primary_genre,idx,name,release_year,release_decade,img_path
-Action,0,Mission: Impossible - Dead Reckoning Part One,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/0.jpg
-Adventure,9,Gran Turismo,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/9.jpg
-Animation,12,PAW Patrol: The Mighty Movie,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/12.jpg
-Comedy,18,Barbie,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/18.jpg
-Crime,15,The Kill Room,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/15.jpg
-Documentary,29,Race to the Summit,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/29.jpg
-Drama,38,Oppenheimer,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/38.jpg
-Family,88,Spy Kids: Armageddon,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/88.jpg
-Fantasy,26,Haunted Mansion,2023,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/26.jpg
-History,687,Prizefighter: The Life of Jem Belcher,2022,2020,/gpfs/home/khousto4/movie-poster-genre/assets/images/687.jpg
+Action,0,Mission: Impossible - Dead Reckoning Part One,2023,2020,assets/images/0.jpg
+Adventure,9,Gran Turismo,2023,2020,assets/images/9.jpg
+Animation,12,PAW Patrol: The Mighty Movie,2023,2020,assets/images/12.jpg
+Comedy,18,Barbie,2023,2020,assets/images/18.jpg
+Crime,15,The Kill Room,2023,2020,assets/images/15.jpg
+Documentary,29,Race to the Summit,2023,2020,assets/images/29.jpg
+Drama,38,Oppenheimer,2023,2020,assets/images/38.jpg
+Family,88,Spy Kids: Armageddon,2023,2020,assets/images/88.jpg
+Fantasy,26,Haunted Mansion,2023,2020,assets/images/26.jpg
+History,676,Prizefighter: The Life of Jem Belcher,2022,2020,assets/images/676.jpg
+Horror,2,The Nun II,2023,2020,assets/images/2.jpg
+Music,156,TAYLOR SWIFT | THE ERAS TOUR,2023,2020,assets/images/156.jpg
+Mystery,49,The Ritual Killer,2023,2020,assets/images/49.jpg
+Romance,17,After Everything,2023,2020,assets/images/17.jpg
+Science Fiction,44,The Mill,2023,2020,assets/images/44.jpg
+TV Movie,149,A Really Haunted Loud House,2023,2020,assets/images/149.jpg
+Thriller,3,Nowhere,2023,2020,assets/images/3.jpg
+War,105,Guy Ritchie's The Covenant,2023,2020,assets/images/105.jpg
+Western,35,Terror on the Prairie,2022,2020,assets/images/35.jpg
