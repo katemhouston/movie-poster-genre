@@ -34,14 +34,27 @@ The download will still work without a token but may be slower.
 
 Get a free token at [huggingface.co](https://huggingface.co) -> Settings -> Access Tokens.
 
-3. Update `configs/default.yaml` with your own paths:
+## Running on a SLURM Cluster
+Before submitting the job, update the following in `scripts/data_prep.sbatch`:
+
+1. Set the `cd` path to your project root:
+```bash
+cd /path/to/movie-poster-genre
+```
+
+2. Update venv name if yours isn't named `venv`:
+```bash
+source your_venv_name/bin/activate
+```
+
+3. Update `configs/default.yaml` with your data paths:
 ```yaml
 data:
   save_dir: /path/to/images
   metadata_path: /path/to/metadata.csv
 ```
 
-4. Run the data prep job:
+Then submit:
 ```bash
 sbatch scripts/data_prep.sbatch
 ```
