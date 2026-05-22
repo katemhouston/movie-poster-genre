@@ -32,6 +32,9 @@ def clean_example(example):
 
    year = int(release_date[:4])
 
+   if year < 1980:
+       return None
+
    return {
        "primary_genre": genres[0]["name"],
        "year": year,
