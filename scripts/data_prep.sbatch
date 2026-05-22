@@ -7,9 +7,12 @@
 #SBATCH --partition=gpu
 #SBATCH --account=dsci410_510
 
-cd /home/khousto4/movie-poster-genre
+cd /path/to/movie-poster-genre
 source venv/bin/activate
-source .env
-export HF_TOKEN
+
+if [ -f ".env" ]; then
+    source .env
+    export HF_TOKEN
+fi
 
 python data/data_prep.py --config configs/default.yaml
