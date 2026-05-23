@@ -33,11 +33,11 @@ class PosterCNN(nn.Module):
        self.classifier = nn.Sequential(
            nn.Flatten(),
            nn.Linear(256 * 14 * 14, 512),
-           nn.BatchNorm2d(512),
+           nn.BatchNorm1d(512),
            nn.ReLU(),
           
            nn.Linear(512, 256),
-           nn.BatchNorm2d(256),
+           nn.BatchNorm1d(256),
            nn.ReLU(),
 
            nn.Linear(256, num_classes)
