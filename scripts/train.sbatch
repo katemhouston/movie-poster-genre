@@ -1,4 +1,4 @@
-bash#!/bin/bash
+#!/bin/bash
 #SBATCH --job-name=train
 #SBATCH --output=slurm_logs/train-%j.out
 #SBATCH --time=12:00:00
