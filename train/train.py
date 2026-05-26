@@ -44,10 +44,11 @@ for exp_name, train_df, val_df, test_df in experiments:
     optimizer = optim.Adam(model.parameters(), lr=config['training']['lr'])
 
     trainer = Trainer(
-        model = model,
-        optimizer = optimizer,
-        device = device,
-        save_path = f'checkpoints/{exp_name}_best.pt'
+        model=model,
+        optimizer=optimizer,
+        device=device,
+        save_path=f'checkpoints/{exp_name}_best.pt',
+        exp_name=exp_name
     )
 
     trainer.train(train_loader, val_loader, epochs=config['training']['epochs'])

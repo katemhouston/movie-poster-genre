@@ -16,7 +16,8 @@ dependencies = [
     "pyyaml",
     "matplotlib",
     "jupyter",
+    "tensorboard",
 ]
 
 [tool.setuptools.packages.find]
-include = ["data*", "data_loader*", "models*"]
+include = ["data*", "data_loader*", "models*", "trainer*"]

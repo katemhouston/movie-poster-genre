@@ -2,14 +2,16 @@ import torch
 import torch.nn as nn
 from sklearn.metrics import f1_score
 import pandas as pd
+from torch.utils.tensorboard import SummaryWriter
 
 class Trainer:
-    def __init__(self, model, optimizer, device, save_path):
+    def __init__(self, model, optimizer, device, save_path, exp_name):
         self.model = model.to(device)
         self.optimizer = optimizer
         self.device = device
         self.save_path = save_path
         self.criterion = nn.CrossEntropyLoss()
+        self.writer = SummaryWriter(log_dir=f"runs/{exp_name}")
 
     def train_epoch(self, loader):
         self.model.train()
@@ -19,8 +21,10 @@ class Trainer:
             images, labels = images.to(self.device), labels.to(self.device)
 
             self.optimizer.zero_grad()
+
             outputs = self.model(images)
             loss = self.criterion(outputs, labels)
+            
             loss.backward()
             self.optimizer.step()
 
@@ -41,8 +45,11 @@ class Trainer:
 
                 predictions = outputs.argmax(dim=1).cpu()
 
-                all_predictions = torch.cat(all_predictions).numpy()
-                all_labels = torch.cat(all_labels).numpy()
+                all_predictions.append(predictions)
+                all_labels.append(labels)
+
+            all_predictions = torch.cat(all_predictions).numpy()
+            all_labels = torch.cat(all_labels).numpy()
 
             f1 = f1_score(all_labels, all_predictions, average="macro")
             
@@ -55,6 +62,9 @@ class Trainer:
             train_loss = self.train_epoch(train_loader)
             val_f1 = self.evaluate(val_loader)
 
+            self.writer.add_scalar('Loss/train', train_loss, epoch)
+            self.writer.add_scalar('F1/val', val_f1, epoch)
+
             print(f'Epoch {epoch+1}/{epochs} | Loss: {train_loss:.4f} | Val F1: {val_f1:.4f}')
 
             if val_f1 > best_f1:
@@ -62,4 +72,5 @@ class Trainer:
                 torch.save(self.model.state.dict(), self.save_path)
                 print(f'Saved best model (F1: {best_f1:.4f})')
 
+        self.writer.close()
         return best_f1
