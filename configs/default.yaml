@@ -3,3 +3,8 @@ data:
   metadata_path: /path/to/metadata.csv
   img_size: 224
   quality: 95
+
+training:
+  batch_size: 64
+  lr: 0.001
+  epochs: 20

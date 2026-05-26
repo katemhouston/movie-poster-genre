@@ -47,3 +47,19 @@ class Trainer:
             f1 = f1_score(all_labels, all_predictions, average="macro")
             
             return f1
+        
+    def train(self, train_loader, val_loader, epochs):
+        best_f1 = 0
+
+        for epoch in range(epochs):
+            train_loss = self.train_epoch(train_loader)
+            val_f1 = self.evaluate(val_loader)
+
+            print(f'Epoch {epoch+1}/{epochs} | Loss: {train_loss:.4f} | Val F1: {val_f1:.4f}')
+
+            if val_f1 > best_f1:
+                best_f1 = val_f1
+                torch.save(self.model.state.dict(), self.save_path)
+                print(f'Saved best model (F1: {best_f1:.4f})')
+
+        return best_f1

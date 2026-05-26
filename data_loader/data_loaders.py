@@ -56,14 +56,26 @@ def get_splits(df, random_state=42):
     print(f'Train: {len(train_df)} | Val: {len(val_df)} | Test: {len(test_df)}')
     return train_df, val_df, test_df
 
-def get_temporal_split(df, train_decades, test_decades):
-    train_df = df[df['release_decade'].isin(train_decades)]
-    test_df = df[df['release_decade'].isin(test_decades)]
+def get_within_decade_split(df, decade, random_state=42):
+    decade_df = df[df['release_decade'] == decade]
 
-    print(f'Train Decades: {train_decades} ({len(train_df)} samples)')
-    print(f'Test Decades: {test_decades} ({len(test_df)} samples)')
+    train_val_df, test_df = train_test_split(decade_df, test_size=0.1, stratify=decade_df['primary_genre'], random_state=random_state)
+    train_df, val_df = train_test_split(train_val_df, test_size=1/9, stratify=train_val_df['primary_genre'], random_state=random_state)
+    
+    print(f"Within {decade}s | Train: {len(train_df)} | Val: {len(val_df)} | Test: {len(test_df)}")
+    
+    return train_df, val_df, test_df
 
-    return train_df, test_df
+def get_transfer_split(df, source_decade, target_decade, random_state=42):
+    source_df = df[df['release_decade'] == source_decade]
+    target_df = df[df['release_decade'] == target_decade]
+
+    train_df, val_df = train_test_split(source_df, test_size=0.2, stratify=source_df['primary_genre'], random_state=random_state)
+    test_df = target_df
+
+    print(f"Transfer {source_decade}s -> {target_decade}s | Train: {len(train_df)} | Val: {len(val_df)} | Test: {len(test_df)}")
+    
+    return train_df, val_df, test_df
 
 def get_dataloader(df, label_to_idx, transform, batch_size=64, shuffle=True, num_workers=4):
     dataset = PosterDataset(df, label_to_idx, transform)
