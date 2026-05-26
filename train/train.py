@@ -3,15 +3,9 @@ import torch.optim as optim
 import pandas as pd
 import yaml
 import argparse
-from data_loader.data_loaders import label_encoding, get_dataloader, get_within_decade_split, get_transfer_split
+from data_loader.data_loaders import transform, label_encoding, get_dataloader, get_within_decade_split, get_transfer_split
 from models.cnn import PosterCNN
 from trainer.trainer import Trainer
-from torchvision import transforms
-
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
-])
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config", type=str, required=True)
@@ -42,8 +36,8 @@ results = {}
 for exp_name, train_df, val_df, test_df in experiments:
     print(f'\n--- Running experiment: {exp_name} ---')
 
-    train_laoder = get_dataloader(train_df, label_to_idx, transform, batch_size=config['training']['batch_size'])
-    val_laoder = get_dataloader(val_df, label_to_idx, transform, batch_size=config['training']['batch_size'], shuffle=False)
+    train_loader = get_dataloader(train_df, label_to_idx, transform, batch_size=config['training']['batch_size'])
+    val_loader = get_dataloader(val_df, label_to_idx, transform, batch_size=config['training']['batch_size'], shuffle=False)
     test_loader = get_dataloader(test_df, label_to_idx, transform, batch_size=config['training']['batch_size'], shuffle=False)
 
     model = PosterCNN(num_classes=num_classes)
@@ -56,7 +50,7 @@ for exp_name, train_df, val_df, test_df in experiments:
         save_path = f'checkpoints/{exp_name}_best.pt'
     )
 
-    trainer.train(train_laoder, val_laoder, epochs=config['training']['epochs'])
+    trainer.train(train_loader, val_loader, epochs=config['training']['epochs'])
 
     model.load_state_dict(torch.load(f"checkpoints/{exp_name}_best.pt"))
     test_f1 = trainer.evaluate(test_loader)
@@ -69,3 +63,5 @@ print('\n--- Final Results ---')
 
 for exp, f1 in results.items():
     print(f'{exp}: {f1:.4f}')
+
+pd.DataFrame(results.items(), columns=['experiment', 'test_f1']).to_csv('results.csv', index=False)
