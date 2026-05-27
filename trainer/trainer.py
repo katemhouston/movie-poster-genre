@@ -24,7 +24,7 @@ class Trainer:
 
             outputs = self.model(images)
             loss = self.criterion(outputs, labels)
-            
+
             loss.backward()
             self.optimizer.step()
 
@@ -69,7 +69,7 @@ class Trainer:
 
             if val_f1 > best_f1:
                 best_f1 = val_f1
-                torch.save(self.model.state.dict(), self.save_path)
+                torch.save(self.model.state_dict(), self.save_path)
                 print(f'Saved best model (F1: {best_f1:.4f})')
 
         self.writer.close()
