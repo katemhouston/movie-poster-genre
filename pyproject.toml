@@ -17,6 +17,7 @@ dependencies = [
     "matplotlib",
     "jupyter",
     "tensorboard",
+    "seaborn",
 ]
 
 [tool.setuptools.packages.find]
