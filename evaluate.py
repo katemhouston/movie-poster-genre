@@ -2,6 +2,7 @@ import torch
 import pandas as pd
 import yaml
 import argparse
+import os
 from sklearn.metrics import f1_score, classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -19,6 +20,9 @@ df = pd.read_csv(config["data"]["metadata_path"])
 label_to_idx, idx_to_label = label_encoding(df)
 num_classes = len(label_to_idx)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+run_name = config["experiment"]["name"]
+os.makedirs(f"results/{run_name}", exist_ok=True)
 
 experiments = {
     "within_1980s": get_within_decade_split(df, 1980),
@@ -54,8 +58,12 @@ for exp_name,(train_df, val_df, test_df) in experiments.items():
     all_predictions = torch.cat(all_predictions).numpy()
     all_labels = torch.cat(all_labels).numpy()
 
-    print(classification_report(all_labels, all_predictions, target_names=list(label_to_idx.keys(), zero_division=0)))
-    
+    report = classification_report(all_labels, all_predictions, target_names=list(label_to_idx.keys()), zero_division=0)
+    print(report)
+
+    with open(f"results/{run_name}/{exp_name}_report.txt", "w") as f:
+        f.write(report)
+
     cm = confusion_matrix(all_labels, all_predictions)
     plt.figure(figsize=(12,10))
     sns.heatmap(cm, 
@@ -68,7 +76,7 @@ for exp_name,(train_df, val_df, test_df) in experiments.items():
     plt.ylabel("True")
     plt.xlabel("Predicted")
     plt.tight_layout()
-    plt.savefig(f'results/{exp_name}_confusion.png', dpi=150)
+    plt.savefig(f"results/{run_name}/{exp_name}_confusion.png", dpi=150)
     plt.close()
 
-    print(f'Saved confusion matrix to results/{exp_name}_confusion.png')
+    print(f"Saved results to results/{run_name}/")

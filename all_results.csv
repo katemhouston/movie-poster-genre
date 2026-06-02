@@ -1,6 +1,16 @@
 run,experiment,test_f1,notes
 baseline_v1,within_1980s,0.4570114262837039,lr=0.001 batch=64 epochs=20 no augmentation
-baseline_v1,within_2010s,0.41981841397780395,lr=0.001 batch=64 epochs=20 no augmentation
-baseline_v1,forward_1980s_1990s,0.07993831307620854,lr=0.001 batch=64 epochs=20 no augmentation
+baseline_v1,within_2010s,0.4198184139778039,lr=0.001 batch=64 epochs=20 no augmentation
+baseline_v1,forward_1980s_1990s,0.0799383130762085,lr=0.001 batch=64 epochs=20 no augmentation
 baseline_v1,large_gap_1980s_2020s,0.0632897272813494,lr=0.001 batch=64 epochs=20 no augmentation
-baseline_v1,backward_2010s_1980s,0.07428044936628442,lr=0.001 batch=64 epochs=20 no augmentation
+baseline_v1,backward_2010s_1980s,0.0742804493662844,lr=0.001 batch=64 epochs=20 no augmentation
+baseline_v2,within_1980s,0.4808615060397285,"lr=0.0001, batch=64, epochs=20, no augmentation"
+baseline_v2,within_2010s,0.4500434516289696,"lr=0.0001, batch=64, epochs=20, no augmentation"
+baseline_v2,forward_1980s_1990s,0.0812014925741949,"lr=0.0001, batch=64, epochs=20, no augmentation"
+baseline_v2,large_gap_1980s_2020s,0.0564493048619157,"lr=0.0001, batch=64, epochs=20, no augmentation"
+baseline_v2,backward_2010s_1980s,0.0746499035391874,"lr=0.0001, batch=64, epochs=20, no augmentation"
+baseline_v3,within_1980s,0.43861677467780646,"lr=0.001, batch=32, epochs=20, no augmentation"
+baseline_v3,within_2010s,0.4185973064131783,"lr=0.001, batch=32, epochs=20, no augmentation"
+baseline_v3,forward_1980s_1990s,0.07782499589028913,"lr=0.001, batch=32, epochs=20, no augmentation"
+baseline_v3,large_gap_1980s_2020s,0.07001287425510438,"lr=0.001, batch=32, epochs=20, no augmentation"
+baseline_v3,backward_2010s_1980s,0.07650529577921573,"lr=0.001, batch=32, epochs=20, no augmentation"

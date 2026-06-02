@@ -1,0 +1,25 @@
+                 precision    recall  f1-score   support
+
+         Action       0.57      0.54      0.56       202
+      Adventure       0.89      0.47      0.62        51
+      Animation       0.64      0.63      0.63        95
+         Comedy       0.54      0.67      0.59       317
+          Crime       0.81      0.31      0.45        55
+    Documentary       0.75      0.28      0.41        75
+          Drama       0.48      0.71      0.57       435
+         Family       0.65      0.31      0.42        42
+        Fantasy       0.91      0.33      0.49        30
+        History       1.00      0.15      0.27        13
+         Horror       0.54      0.49      0.52       138
+          Music       1.00      0.35      0.52        17
+        Mystery       0.82      0.41      0.55        22
+        Romance       0.57      0.31      0.40        84
+Science Fiction       0.79      0.43      0.56        44
+       TV Movie       1.00      0.14      0.24        22
+       Thriller       0.42      0.45      0.43       116
+            War       1.00      0.20      0.33        15
+        Western       0.00      0.00      0.00         5
+
+       accuracy                           0.54      1778
+      macro avg       0.70      0.38      0.45      1778
+   weighted avg       0.59      0.54      0.53      1778
