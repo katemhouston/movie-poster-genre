@@ -65,4 +65,14 @@ print('\n--- Final Results ---')
 for exp, f1 in results.items():
     print(f'{exp}: {f1:.4f}')
 
-pd.DataFrame(results.items(), columns=['experiment', 'test_f1']).to_csv('results.csv', index=False)
+results_df = pd.DataFrame(results.items(), columns=['experiment', 'test_f1'])
+results_df['run'] = config['experiment']['name']
+results_df['notes'] = config['experiment']['notes']
+
+# append to master results file
+import os
+master_path = 'all_results.csv'
+if os.path.exists(master_path):
+    existing = pd.read_csv(master_path)
+    results_df = pd.concat([existing, results_df], ignore_index=True)
+results_df.to_csv(master_path, index=False)
