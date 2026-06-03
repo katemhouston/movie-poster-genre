@@ -6,9 +6,9 @@ data:
 
 training:
   batch_size: 64
-  lr: 0.001
+  lr: 0.0001
   epochs: 20
 
 experiment:
-  name: "baseline_v4"
-  notes: "lr=0.001, batch=64, epochs=20, dropout=0.5, no augmentation"
+  name: "baseline_v6"
+  notes: "lr=0.001, batch=64, epochs=20, dropout=0.6, no augmentation"
