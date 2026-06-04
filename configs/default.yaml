@@ -10,5 +10,5 @@ training:
   epochs: 20
 
 experiment:
-  name: "augmented_v1"
-  notes: "lr=0.001, batch=64, epochs=20, dropout=0.6, augmentation=HorizontalFlip+ColorJitter+RandomGrayscale"
+  name: "baseline_v6"
+  notes: "lr=0.0001, batch=64, epochs=20, dropout=0.6, no augmentation"

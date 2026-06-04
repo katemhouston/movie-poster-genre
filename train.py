@@ -3,7 +3,7 @@ import torch.optim as optim
 import pandas as pd
 import yaml
 import argparse
-from data_loader.data_loaders import transform, train_transform, label_encoding, get_dataloader, get_within_decade_split, get_transfer_split
+from data_loader.data_loaders import transform, label_encoding, get_dataloader, get_within_decade_split, get_transfer_split
 from models.cnn import PosterCNN
 from trainer.trainer import Trainer
 
@@ -36,7 +36,7 @@ results = {}
 for exp_name, train_df, val_df, test_df in experiments:
     print(f'\n--- Running experiment: {exp_name} ---')
 
-    train_loader = get_dataloader(train_df, label_to_idx, train_transform, batch_size=config['training']['batch_size'])
+    train_loader = get_dataloader(train_df, label_to_idx, transform, batch_size=config['training']['batch_size'])
     val_loader = get_dataloader(val_df, label_to_idx, transform, batch_size=config['training']['batch_size'], shuffle=False)
     test_loader = get_dataloader(test_df, label_to_idx, transform, batch_size=config['training']['batch_size'], shuffle=False)
 
