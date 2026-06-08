@@ -114,11 +114,11 @@ After 6 baseline runs and 1 augmentation run, the best configuration was:
 ### Model Performance
 | Experiment | Train Decade | Test Decade | Macro F1 |
 |------------|-------------|-------------|----------|
-| Within-Decade | 1980s | 1980s | 0.481 |
-| Within-Decade | 2010s | 2010s | 0.450 |
-| Forward Transfer | 1980s | 1990s | 0.081 |
-| Large Gap | 1980s | 2020s | 0.056 |
-| Backward Transfer | 2010s | 1980s | 0.075 |
+| Within-Decade | 1980s | 1980s | 0.483 |
+| Within-Decade | 2010s | 2010s | 0.440 |
+| Forward Transfer | 1980s | 1990s | 0.075 |
+| Large Gap | 1980s | 2020s | 0.069 |
+| Backward Transfer | 2010s | 1980s | 0.073 |
 
 Within-decade F1 of ~0.45-0.48 shows that the model is learning meaningful patterns, and is about 9x above the random chance baseline of ~0.05 for a 19-class problem. Transfer F1 of ~0.06-0.08 is nearly random and indicates that the model fails to generalize across decades.
 
