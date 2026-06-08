@@ -220,5 +220,4 @@ __marimo__/
 .env
 slurm_logs/
 exploratory_analysis.ipynb
-checkpoints/
 runs/
