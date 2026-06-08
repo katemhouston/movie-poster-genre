@@ -4,20 +4,9 @@
 
 The purpose of this project is to investigate how movie poster design has shifted over time and, more specifically, how this impacts the ability of a CNN to predict genres over time.
 
-This is interesting because movie posters are a very persuasive element of a firm’s advertising
-efforts. Designs utilize specific design elements, such as coloring, typography, and layout, to
-portray the film in a static way. These choices usually correspond to genre, but also undergo
-many shifts throughout time. For example, in the 1980s posters typically took on a minimalist
-approach, while the 2000s saw the rise of franchise cinema and digital aesthetics. I am really
-curious to see how these shifts have impacted a model’s ability to generalize over time, and
-which genres have stayed consistent over different eras.
+This is interesting because movie posters are a very persuasive element of a firm’s advertising efforts. Designs utilize specific design elements, such as coloring, typography, and layout, to portray the film in a static way. These choices usually correspond to genre, but also undergo many shifts throughout time. For example, in the 1980s posters typically took on a minimalist approach, while the 2000s saw the rise of franchise cinema and digital aesthetics. We are curious to see how these shifts have impacted a model’s ability to generalize over time, and which genres have stayed consistent over different eras.
 
-Multiclassification genre prediction for movie posters using CNNs has been done many
-times before. However, all of the prior work uses random train/validation/test splits that don’t
-consider the sequential structure of the data. There aren’t any existing studies that test whether
-a model trained on posters from one decade generalizes to another. The novel aspect seeks to
-investigate whether a multiclass model trained on one decade’s posters can accurately predict
-genres from another decade’s posters.
+Multiclassification genre prediction for movie posters using CNNs has been done many times before. However, all of the prior work uses random train/validation/test splits that don’t consider the sequential structure of the data. There aren’t any existing studies that test whether a model trained on posters from one decade generalizes to another. The novel aspect seeks to investigate whether a multiclass model trained on one decade’s posters can accurately predict genres from another decade’s posters.
 
 ## Data Overview
 The movie_posters-100k dataset is a collection of movie posters spawning across 19 genres. The dataset can be accessed via HuggingFace's `Datasets` library. For the purpose of this project, we have chosen to only use movies released from 1980 onward. The images are 3x224x224 numpy arrays. An example notebook with data loaders is provided in `notebooks/demo.ipynb`.
@@ -76,8 +65,6 @@ sbatch scripts/data_prep.sbatch
 data:
   save_dir: /path/to/images
   metadata_path: /path/to/metadata.csv
-  img_size: 224
-  quality: 95
 
 training:
   batch_size: 64
@@ -133,7 +120,7 @@ After 6 baseline runs and 1 augmentation run, the best configuration was:
 | Large Gap | 1980s | 2020s | 0.056 |
 | Backward Transfer | 2010s | 1980s | 0.075 |
 
-Within-decade F1 of ~0.45-0.48 represents meaningful learning, and is roughly 9× above the random chance baseline of ~0.05 for a 19-class problem. Transfer F1 of ~0.06-0.08 is near-random, indicating the model fails to generalize across decades.
+Within-decade F1 of ~0.45-0.48 shows that the model is learning meaningful patterns, and is about 9x above the random chance baseline of ~0.05 for a 19-class problem. Transfer F1 of ~0.06-0.08 is nearly random and indicates that the model fails to generalize across decades.
 
 ### F1 by Experiment
 
@@ -143,11 +130,15 @@ Within-decade F1 of ~0.45-0.48 represents meaningful learning, and is roughly 9�
 
 ![Per-Genre F1](assets/confusion_matrices.png)
 
+### Top Confusion Pairs (Within Decade Experiments)
+
+![Top Confusion Pairs](assets/top_confusion_pairs.png)
+
 ### Findings
-The model learns decade-specific visual aesthetics instead of generalizable genre features. The ~0.45 to ~0.07 collapse across all transfer experiments, regardless of direction or gap size, indicates that poster design has shifted enough across decades to almost entirely break genre classification.
+The model learns decade-specific visual aesthetics instead of generalizable genre features. F1 score collapses from ~0.45 to ~0.07 across all transfer experiments, regardless of direction or gap size. This indicates that poster design has shifted enough across decades to almost entirely break genre classification.
 
 ## Discussion
-The model itself is limited by several factors. Building a custom 4-block CNN means that the model has a limited ability to learn universal visual features, relying entirely on patterns in the training decade. Modern architectures such as ResNet may be better suited. Movies often span multiple genres (e.g. a romantic comedy) but the model only predicts one, which may introduce noise into both training and evaluation. Additionally, the model sees each poster in isolation with no knowledge of when it was made, so it cannot adapt to era-specific visual conventions.
+The model itself is limited by several factors. the first being that building a custom 4-block CNN means that the model has a limited ability to learn universal visual features and relys entirely on patterns in the training decade. Modern architectures such as ResNet may be better suited for this problem. Additionally, movies often span multiple genres (e.g. a romantic comedy) but the model only predicts one, which may introduce noise into both training and evaluation. The model also sees each poster in isolation with no knowledge of when it was made, so it cannot adapt to era-specific visual conventions.
 
 The dataset used is heavily imbalnced, meaning that some genres like Drama and Comedy are heavily represented while others like History and Western are rare, which can skew macro F1. There are also only 4 years of data (2020-2023) makes the 2020s a weaker test set than other decades.
 
